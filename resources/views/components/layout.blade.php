@@ -10,7 +10,7 @@
 	@vite("resources/css/app.css")
 	<title>{{ $title }}</title>
 </head>
-<body>
+<body class="container px-4 mx-auto my-5">
 	<nav class="flex space-x-4 my-2">
 		<a href="/">Home</a>
 		<a href="/about">About us</a>
