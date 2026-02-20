@@ -73,6 +73,12 @@ class IdeaController extends Controller
 	 */
 	public function update(Request $request, Idea $idea)
 	{
+		$request->validate(
+			[
+				"description" => ["required", "min:10"],
+			]
+		);
+
 		$idea->update([
 			"description" => $request->input("description"),
 		]);
