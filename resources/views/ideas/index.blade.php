@@ -2,14 +2,12 @@
     @if ($ideas->count())
         <div class="border-b border-white/10 pb-12 mt-6">
             <h2 class="font-bold text-white text-2xl mb-3">Welcome, here are your IDEAS:</h2>
-            <ul class="text-base/7 font-semibold text-white">
-                @forelse ($ideas as $idea)
-                    <li class="list-disc list-inside">
-                        <a href="/ideas/{{ $idea->id }}">{{ $idea->description }}</a>
-                    </li>
-                @empty
-                    <p>You have no idea yet. Come up with a new one!</p>
-                @endforelse
+            <ul class="text-base/7 font-semibold text-white mt-6 grid grid-cols-2 gap-x-6 gap-y-4">
+                @foreach ($ideas as $idea)
+                    <x-idea-card href="/ideas/{{ $idea->id }}">
+                        {{ $idea->description }}
+                    </x-idea-card>
+                @endforeach
             </ul>
             <a href="/ideas/create"
                 class="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer mt-8 inline-block">Create</a>
