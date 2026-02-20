@@ -1,10 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/", function () {
-	$ideas = session()->get("ideas", []);
+	// $ideas = session()->get("ideas", []);
+
+	$ideas = DB::table("ideas")->get();
 
 	return view("ideas", [
 		"ideas" => $ideas,
