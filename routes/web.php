@@ -13,6 +13,23 @@ Route::get("/ideas", function () {
 	]);
 });
 
+// get the create form
+Route::get("/ideas/create", function () {
+	return view("ideas.create");
+});
+
+// store a new idea
+Route::post("/ideas", function () {
+	$idea = Request::input("description");
+
+	Idea::create([
+		"description" => $idea,
+		"state" => "pending",
+	]);
+
+	return redirect("/ideas");
+});
+
 // show an idea
 Route::get("/ideas/{idea}", function (Idea $idea) {
 	// $idea = Idea::findOrFail($id)
@@ -36,18 +53,6 @@ Route::patch("/ideas/{idea}", function (Idea $idea) {
 	]);
 
 	return redirect("/ideas/{$idea->id}");
-});
-
-// store a new idea
-Route::post("/ideas", function () {
-	$idea = Request::input("idea");
-
-	Idea::create([
-		"description" => $idea,
-		"state" => "pending",
-	]);
-
-	return redirect("/");
 });
 
 // destroy an idea
