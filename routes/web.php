@@ -50,9 +50,9 @@ Route::post("/ideas", function () {
 	return redirect("/");
 });
 
-//! Temporary
-Route::get("/delete-ideas", function () {
-	Idea::truncate();
+// destroy an idea
+Route::delete("/ideas/{idea}", function (Idea $idea) {
+	$idea->delete();
 
-	return redirect("/");
+	return redirect("/ideas");
 });

@@ -20,7 +20,9 @@
                     <h2 class="font-bold text-white text-2xl mb-3">Ideas:</h2>
                     <ul class="text-base/7 font-semibold text-white">
                         @forelse ($ideas as $idea)
-                            <li class="list-disc list-inside">{{ $idea->description }}</li>
+                            <li class="list-disc list-inside">
+                                <a href="/ideas/{{ $idea->id }}">{{ $idea->description }}</a>
+                            </li>
                         @empty
                             <p>You have no idea yet. Come up with a new one!</p>
                         @endforelse
