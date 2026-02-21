@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idea;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class IdeaController extends Controller
@@ -12,7 +13,9 @@ class IdeaController extends Controller
 	 */
 	public function index()
 	{
-		$ideas = Idea::all();
+		$ideas = Idea::where([
+			"user_id" => Auth::user()->id,
+		])->get();
 
 		return view("ideas.index", [
 			"ideas" => $ideas,
@@ -43,6 +46,7 @@ class IdeaController extends Controller
 		Idea::create([
 			"description" => $idea,
 			"state" => "pending",
+			"user_id" => Auth::user()->id,
 		]);
 
 		return redirect("/ideas");
